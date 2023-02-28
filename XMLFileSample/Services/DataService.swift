@@ -27,6 +27,11 @@ class DataService: NSObject {
         return URL(string: documentsDirectory)?.appending(path: officialDataFolder)
     }()
     
+    lazy var dbPath: URL? = {
+        let documentsDirectory = rootPaths[0]
+        return URL(string: documentsDirectory)?.appending(path: "db")
+    }()
+    
     override init() {
         
     }
@@ -86,6 +91,8 @@ class DataService: NSObject {
                 try fileManager.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
                 
                 try fileManager.createDirectory(atPath: officialDataPath?.path ?? "", withIntermediateDirectories: true, attributes: nil)
+                
+                try fileManager.createDirectory(atPath: dbPath?.path ?? "", withIntermediateDirectories: true, attributes: nil)
                 
                 let url = Bundle.main.url(forResource: "xmls", withExtension: "plist")!
                 let listData = try Data(contentsOf: url)

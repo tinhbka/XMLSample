@@ -23,7 +23,7 @@ class SQLiteService: NSObject {
     let db: Connection
     
     override init() {
-        let dbUrl = URL(string: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appending("_db.sqlite3") ?? "")
+        let dbUrl = URL(string: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appending("/db/db.sqlite3") ?? "")
         db = try! Connection(dbUrl?.path() ?? "")
         super.init()
         createTable()
